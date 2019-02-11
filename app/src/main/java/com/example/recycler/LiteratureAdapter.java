@@ -37,7 +37,9 @@ public class LiteratureAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
 
-        switch (getItemViewType(position)) {
+        ((Bindable) viewHolder).bindView(position);
+
+        /*switch (getItemViewType(position)) {
             case Literature.TYPE_BOOK:
                 ((BookViewHolder) viewHolder).bindView(position);
                 break;
@@ -47,7 +49,7 @@ public class LiteratureAdapter extends RecyclerView.Adapter {
             case Literature.TYPE_NEWSPAPER:
                 ((NewspaperViewHolder) viewHolder).bindView(position);
                 break;
-        }
+        }*/
 
     }
 
@@ -69,34 +71,37 @@ public class LiteratureAdapter extends RecyclerView.Adapter {
         return mLiteratureList.get(position).getType();
     }
 
-    class BookViewHolder extends RecyclerView.ViewHolder {
+    class BookViewHolder extends RecyclerView.ViewHolder implements Bindable {
         public BookViewHolder(@NonNull View itemView) {
             super(itemView);
         }
 
-        void bindView(int position) {
+        @Override
+        public void bindView(int position) {
             DataObjects.Book book = (DataObjects.Book) mLiteratureList.get(position);
         }
 
     }
 
-    class MagazineViewHolder extends RecyclerView.ViewHolder {
+    class MagazineViewHolder extends RecyclerView.ViewHolder implements Bindable {
         public MagazineViewHolder(@NonNull View itemView) {
             super(itemView);
         }
 
-        void bindView(int position) {
+        @Override
+        public void bindView(int position) {
             DataObjects.Magazine magazine = (DataObjects.Magazine) mLiteratureList.get(position);
         }
 
     }
 
-    class NewspaperViewHolder extends RecyclerView.ViewHolder {
+    class NewspaperViewHolder extends RecyclerView.ViewHolder implements Bindable {
         public NewspaperViewHolder(@NonNull View itemView) {
             super(itemView);
         }
 
-        void bindView(int position) {
+        @Override
+        public void bindView(int position) {
             DataObjects.Newspaper newspaper = (DataObjects.Newspaper) mLiteratureList.get(position);
         }
 
